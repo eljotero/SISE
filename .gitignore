@@ -127,3 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Other
+out
+.gitignore.bak
+.idea
+Zadanie_1_Exec
