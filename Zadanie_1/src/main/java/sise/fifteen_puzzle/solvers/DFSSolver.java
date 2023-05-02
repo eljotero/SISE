@@ -18,13 +18,13 @@ public class DFSSolver extends Solver {
 
     @Override
     public String solve(Node primaryNode) {
-        setCurrentRecursionDepth(getCurrentRecursionDepth() + 1);
-        if (getCurrentRecursionDepth() > getMaxAchievedRecursionDepth()) {
-            setMaxAchievedRecursionDepth(getCurrentRecursionDepth());
+        CURRENT_RECURSION_DEPTH++;
+        if (CURRENT_RECURSION_DEPTH > MAX_ACHIEVED_RECURSION_DEPTH) {
+            MAX_ACHIEVED_RECURSION_DEPTH = CURRENT_RECURSION_DEPTH;
         }
-        setNumberOfVisitedStates(getNumberOfVisitedStates() + 1);
+        NUMBER_OF_VISITED_STATES++;
         if (primaryNode.getCurrentState().isGoal(getTargetState())) {
-            setNumberOfProcessedStates(getNumberOfProcessedStates() + 1);
+            NUMBER_OF_PROCESSED_STATES++;
             if (primaryNode.getParentNode() == null) {
                 return stringBuilder.reverse().toString();
             } else {
@@ -32,11 +32,11 @@ public class DFSSolver extends Solver {
             }
         } else {
             addNewClosedState(primaryNode);
-            setNumberOfProcessedStates(getNumberOfProcessedStates() + 1);
+            NUMBER_OF_PROCESSED_STATES++;
             for (int i = 0; i < lookUpOrder.length(); i++) {
-                // TODO: Check if childNode does not change algorithm in any way.
                 Node childNode = primaryNode.getCertainNeighbour(lookUpOrder.charAt(i));
-                if (!getClosedStateList().contains(childNode) && childNode != null && getCurrentRecursionDepth() < MAX_RECURSION_DEPTH) {
+                if (!getClosedStateList().contains(childNode) && childNode != null && CURRENT_RECURSION_DEPTH < MAX_RECURSION_DEPTH) {
+                    NUMBER_OF_VISITED_STATES++;
                     if (Objects.equals(solve(childNode), "END")) {
                         stringBuilder.append(childNode.getOperator());
                         if (childNode.getParentNode().getParentNode() == null) {
@@ -45,7 +45,9 @@ public class DFSSolver extends Solver {
                             return "END";
                         }
                     } else {
-                        setCurrentRecursionDepth(getCurrentRecursionDepth() - 1);
+                        CURRENT_RECURSION_DEPTH--;
+                        // Added: While backtracking, we unlock states, since they can be used in other iterations to reach solution.
+                        getClosedStateList().remove(childNode);
                     }
                 }
             }

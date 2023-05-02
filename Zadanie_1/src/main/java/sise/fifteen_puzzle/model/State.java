@@ -136,8 +136,8 @@ public class State implements Comparable<State> {
                 if (currentValue < 0) {
                     currentValue += arrayOfBlocks.length;
                 }
-                int requiredRow = (currentValue % arrayOfBlocks.length) / this.getNumberOfColumns();
-                int requiredColumn = ((currentValue - 1) % arrayOfBlocks.length) % this.getNumberOfRows();
+                int requiredRow = currentValue / this.getNumberOfColumns();
+                int requiredColumn = currentValue % this.getNumberOfRows();
                 heuristicFunctionValue += (Math.abs(requiredRow - currentRow) + Math.abs(requiredColumn - currentColumn));
             }
         } else {
@@ -146,8 +146,9 @@ public class State implements Comparable<State> {
         return heuristicFunctionValue;
     }
 
-    public int calculateTotalCostValue(String heuristic) {
-        return pathCost + calculateHeuristicValue(heuristic);
+    public int calculateTotalCostValue(String heuristic, Node parentNode) {
+        int totalCost = parentNode.getCurrentState().getPathCost() + calculateHeuristicValue(heuristic);
+        return totalCost;
     }
 
     public boolean isGoal(State someOtherState) {

@@ -24,13 +24,13 @@ public class AStarSolver extends Solver {
     public String solve(Node primaryNode) {
         StringBuilder stringBuilder = new StringBuilder();
         addNewOpenState(primaryNode);
-        setNumberOfVisitedStates(getNumberOfVisitedStates() + 1);
+        NUMBER_OF_VISITED_STATES++;
         while (!openStateList.isEmpty()) {
             Node childNode = openStateList.poll();
             if (!getClosedStateList().contains(childNode) && childNode != null) {
+                NUMBER_OF_PROCESSED_STATES++;
                 if (childNode.checkIfTargetState(getTargetState())) {
-                    setNumberOfProcessedStates(getNumberOfProcessedStates() + 1);
-                    setMaxAchievedRecursionDepth(childNode.getCurrentState().getRecursionDepth());
+                    MAX_ACHIEVED_RECURSION_DEPTH = childNode.getCurrentState().getRecursionDepth();
                     while (childNode.getParentNode() != null) {
                         stringBuilder.append(childNode.getOperator());
                         childNode = childNode.getParentNode();
@@ -38,12 +38,15 @@ public class AStarSolver extends Solver {
                     return stringBuilder.reverse().toString();
                 }
                 addNewClosedState(childNode);
-                setNumberOfProcessedStates(getNumberOfProcessedStates() + 1);
                 for (Node neighbouringNode : childNode.getAllNeighbours()) {
-                    int totalCostValue = neighbouringNode.getCurrentState().calculateTotalCostValue(usedHeuristic);
-                    neighbouringNode.getCurrentState().setPathCost(totalCostValue);
-                    openStateList.add(neighbouringNode);
-                    setNumberOfVisitedStates(getNumberOfVisitedStates() + 1);
+                    if (!getClosedStateList().contains(neighbouringNode)) {
+                        int totalCostValue = neighbouringNode.getCurrentState().calculateTotalCostValue(usedHeuristic, childNode);
+                        neighbouringNode.getCurrentState().setPathCost(totalCostValue);
+                        openStateList.add(neighbouringNode);
+                        NUMBER_OF_VISITED_STATES++;
+                    }
+                    // TODO: Duża liczba stanów odwiedzonych i przetworzonych może wynikać z faktu, że może dochodzić
+                    // do pętli. Trzeba będzie chyba dopytać.
                 }
             }
         }

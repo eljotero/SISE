@@ -25,24 +25,24 @@ public class BFSSolver extends Solver {
     public String solve(Node primaryNode) {
         StringBuilder stringBuilder = new StringBuilder();
         if (primaryNode.getCurrentState().isGoal(getTargetState())) {
-            setNumberOfVisitedStates(getNumberOfVisitedStates() + 1);
-            setNumberOfProcessedStates(getNumberOfVisitedStates() + 1);
+            NUMBER_OF_VISITED_STATES++;
+            NUMBER_OF_PROCESSED_STATES++;
             return stringBuilder.reverse().toString();
         } else {
             Node startingNode = new Node(primaryNode.getCurrentState(), null, ' ');
             addNewOpenState(startingNode);
-            setNumberOfVisitedStates(getNumberOfVisitedStates() + 1);
+            NUMBER_OF_VISITED_STATES++;
             addNewClosedState(startingNode);
-            setNumberOfProcessedStates(getNumberOfProcessedStates() + 1);
+            NUMBER_OF_PROCESSED_STATES++;
             while (!openStateList.isEmpty()) {
                 Node nodeFromList = openStateList.poll();
                 for (int i = 0; i < lookUpOrder.length(); i++) {
                     Node childNode = nodeFromList.getCertainNeighbour(lookUpOrder.charAt(i));
                     if (!getClosedStateList().contains(childNode) && childNode != null) {
-                        setNumberOfVisitedStates(getNumberOfVisitedStates() + 1);
+                        NUMBER_OF_VISITED_STATES++;
                         if (childNode.checkIfTargetState(getTargetState())) {
-                            setNumberOfProcessedStates(getNumberOfProcessedStates() + 1);
-                            setMaxAchievedRecursionDepth(childNode.getCurrentState().getRecursionDepth());
+                            NUMBER_OF_PROCESSED_STATES++;
+                            MAX_ACHIEVED_RECURSION_DEPTH = childNode.getCurrentState().getRecursionDepth();
                             while (childNode.getParentNode() != null) {
                                 stringBuilder.append(childNode.getOperator());
                                 childNode = childNode.getParentNode();
@@ -51,7 +51,7 @@ public class BFSSolver extends Solver {
                         }
                         addNewOpenState(childNode);
                         addNewClosedState(childNode);
-                        setNumberOfProcessedStates(getNumberOfProcessedStates() + 1);
+                        NUMBER_OF_PROCESSED_STATES++;
                     }
                 }
             }

@@ -36,10 +36,10 @@ public class Main {
                 } else {
                     solutionLength = solution.length();
                 }
-                int numberOfVisitedStates = Solver.getNumberOfVisitedStates();
-                int numberOfProcessedStates = Solver.getNumberOfProcessedStates();
-                int maxRecursionDepth = Solver.getMaxAchievedRecursionDepth();
-                double totalTime = ((endTime - startTime) / 1000000.0);
+                int numberOfVisitedStates = Solver.NUMBER_OF_VISITED_STATES;
+                int numberOfProcessedStates = Solver.NUMBER_OF_PROCESSED_STATES;
+                int maxRecursionDepth = Solver.MAX_ACHIEVED_RECURSION_DEPTH;
+                double totalTime = (endTime - startTime) / 1000000.0;
                 IOManager.writeBytesToFile(ParseIO.parseSolution(solutionLength, solution).getBytes(), solutionFile);
                 IOManager.writeBytesToFile(ParseIO.parseStats(solutionLength, numberOfVisitedStates, numberOfProcessedStates,
                         maxRecursionDepth, totalTime).getBytes(), statsFile);
@@ -54,10 +54,10 @@ public class Main {
                 } else {
                     solutionLength = solution.length();
                 }
-                numberOfVisitedStates = Solver.getNumberOfVisitedStates();
-                numberOfProcessedStates = Solver.getNumberOfProcessedStates();
-                maxRecursionDepth = Solver.getMaxAchievedRecursionDepth();
-                totalTime = ((endTime - startTime) / 1000000.0);
+                numberOfVisitedStates = Solver.NUMBER_OF_VISITED_STATES;
+                numberOfProcessedStates = Solver.NUMBER_OF_PROCESSED_STATES;
+                maxRecursionDepth = Solver.MAX_ACHIEVED_RECURSION_DEPTH;
+                totalTime = (endTime - startTime) / 1000000.0;
                 IOManager.writeBytesToFile(ParseIO.parseSolution(solutionLength, solution).getBytes(), solutionFile);
                 IOManager.writeBytesToFile(ParseIO.parseStats(solutionLength, numberOfVisitedStates, numberOfProcessedStates,
                         maxRecursionDepth, totalTime).getBytes(), statsFile);
@@ -72,10 +72,10 @@ public class Main {
                 } else {
                     solutionLength = solution.length();
                 }
-                numberOfVisitedStates = Solver.getNumberOfVisitedStates();
-                numberOfProcessedStates = Solver.getNumberOfProcessedStates();
-                maxRecursionDepth = Solver.getMaxAchievedRecursionDepth();
-                totalTime = ((endTime - startTime) / 1000000.0);
+                numberOfVisitedStates = Solver.NUMBER_OF_VISITED_STATES;
+                numberOfProcessedStates = Solver.NUMBER_OF_PROCESSED_STATES;
+                maxRecursionDepth = Solver.MAX_ACHIEVED_RECURSION_DEPTH;
+                totalTime = (endTime - startTime) / 1000000.0;
                 IOManager.writeBytesToFile(ParseIO.parseSolution(solutionLength, solution).getBytes(), solutionFile);
                 IOManager.writeBytesToFile(ParseIO.parseStats(solutionLength, numberOfVisitedStates, numberOfProcessedStates,
                         maxRecursionDepth, totalTime).getBytes(), statsFile);

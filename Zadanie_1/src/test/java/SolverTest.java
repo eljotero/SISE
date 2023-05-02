@@ -24,7 +24,7 @@ public class SolverTest {
 
     @BeforeAll
     public static void init() throws IOManagerReadException {
-        String fileName = "4x4_01_00001.txt";
+        String fileName = "4x4_07_00180.txt";
         byte[] readBytes = IOManager.readBytesFromFile(fileName);
         readState4x4 = ParseIO.parseInputFile(readBytes);
         fileName = "3x3_01_00001.txt";
@@ -39,8 +39,8 @@ public class SolverTest {
         targetState2x2 = readState2x2.generateTargetState();
 
         BFS = new BFSSolver(targetState4x4, "LURD");
-        DFS = new DFSSolver(targetState4x4, "RDUL");
-        aStr = new AStarSolver(targetState4x4, "manh");
+        DFS = new DFSSolver(targetState4x4, "ULRD");
+        aStr = new AStarSolver(targetState4x4, "hamm");
     }
 
     @Test
