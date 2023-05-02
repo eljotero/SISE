@@ -38,7 +38,7 @@ public class BFSSolver extends Solver {
                 Node nodeFromList = openStateList.poll();
                 for (int i = 0; i < lookUpOrder.length(); i++) {
                     Node childNode = nodeFromList.getCertainNeighbour(lookUpOrder.charAt(i));
-                    if (!getClosedStateList().contains(childNode) && childNode != null) {
+                    if (!getClosedStateList().containsKey(childNode) && childNode != null) {
                         NUMBER_OF_VISITED_STATES++;
                         if (childNode.checkIfTargetState(getTargetState())) {
                             NUMBER_OF_PROCESSED_STATES++;

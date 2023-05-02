@@ -27,9 +27,9 @@ public class AStarSolver extends Solver {
         NUMBER_OF_VISITED_STATES++;
         while (!openStateList.isEmpty()) {
             Node childNode = openStateList.poll();
-            if (!getClosedStateList().contains(childNode) && childNode != null) {
-                NUMBER_OF_PROCESSED_STATES++;
+            if (!getClosedStateList().containsKey(childNode) && childNode != null) {
                 if (childNode.checkIfTargetState(getTargetState())) {
+                    NUMBER_OF_PROCESSED_STATES++;
                     MAX_ACHIEVED_RECURSION_DEPTH = childNode.getCurrentState().getRecursionDepth();
                     while (childNode.getParentNode() != null) {
                         stringBuilder.append(childNode.getOperator());
@@ -38,15 +38,14 @@ public class AStarSolver extends Solver {
                     return stringBuilder.reverse().toString();
                 }
                 addNewClosedState(childNode);
+                NUMBER_OF_PROCESSED_STATES++;
                 for (Node neighbouringNode : childNode.getAllNeighbours()) {
-                    if (!getClosedStateList().contains(neighbouringNode)) {
+                    if (!getClosedStateList().containsKey(neighbouringNode)) {
                         int totalCostValue = neighbouringNode.getCurrentState().calculateTotalCostValue(usedHeuristic, childNode);
                         neighbouringNode.getCurrentState().setPathCost(totalCostValue);
                         openStateList.add(neighbouringNode);
                         NUMBER_OF_VISITED_STATES++;
                     }
-                    // TODO: Duża liczba stanów odwiedzonych i przetworzonych może wynikać z faktu, że może dochodzić
-                    // do pętli. Trzeba będzie chyba dopytać.
                 }
             }
         }

@@ -3,16 +3,15 @@ package sise.fifteen_puzzle.solvers;
 import sise.fifteen_puzzle.model.Node;
 import sise.fifteen_puzzle.model.State;
 
-import java.util.HashSet;
+import java.util.HashMap;
 
 public abstract class Solver {
-    private final HashSet<Node> closedStateList = new HashSet<>();
+    private final HashMap<Node, Node> closedStateList = new HashMap<>();
     private final State targetState;
     public static int NUMBER_OF_VISITED_STATES = 0;
     public static int NUMBER_OF_PROCESSED_STATES = 0;
     public static int MAX_ACHIEVED_RECURSION_DEPTH = 0;
     public static int CURRENT_RECURSION_DEPTH = 0;
-
     public Solver(State targetState) {
         this.targetState = targetState;
     }
@@ -21,7 +20,7 @@ public abstract class Solver {
 
     public void addNewClosedState(Node newNode) {
         if (newNode != null) {
-            closedStateList.add(newNode);
+            closedStateList.put(newNode, newNode);
         }
     }
 
@@ -29,7 +28,7 @@ public abstract class Solver {
         Getters
      */
 
-    public HashSet<Node> getClosedStateList() {
+    public HashMap<Node, Node> getClosedStateList() {
         return closedStateList;
     }
 

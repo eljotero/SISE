@@ -22,8 +22,8 @@ public class DFSSolver extends Solver {
         if (CURRENT_RECURSION_DEPTH > MAX_ACHIEVED_RECURSION_DEPTH) {
             MAX_ACHIEVED_RECURSION_DEPTH = CURRENT_RECURSION_DEPTH;
         }
-        NUMBER_OF_VISITED_STATES++;
         if (primaryNode.getCurrentState().isGoal(getTargetState())) {
+            NUMBER_OF_VISITED_STATES++;
             NUMBER_OF_PROCESSED_STATES++;
             if (primaryNode.getParentNode() == null) {
                 return stringBuilder.reverse().toString();
@@ -31,12 +31,15 @@ public class DFSSolver extends Solver {
                 return "END";
             }
         } else {
+            NUMBER_OF_VISITED_STATES++;
             addNewClosedState(primaryNode);
             NUMBER_OF_PROCESSED_STATES++;
             for (int i = 0; i < lookUpOrder.length(); i++) {
                 Node childNode = primaryNode.getCertainNeighbour(lookUpOrder.charAt(i));
-                if (!getClosedStateList().contains(childNode) && childNode != null && CURRENT_RECURSION_DEPTH < MAX_RECURSION_DEPTH) {
-                    NUMBER_OF_VISITED_STATES++;
+                if ((!getClosedStateList().containsKey(childNode) || getClosedStateList().containsKey(childNode)
+                        && getClosedStateList().get(childNode).getCurrentState().getPathCost() < childNode.getCurrentState().getPathCost())
+                        && childNode != null && CURRENT_RECURSION_DEPTH < MAX_RECURSION_DEPTH) {
+                    childNode.getCurrentState().setPathCost(primaryNode.getCurrentState().getPathCost() + 1);
                     if (Objects.equals(solve(childNode), "END")) {
                         stringBuilder.append(childNode.getOperator());
                         if (childNode.getParentNode().getParentNode() == null) {
@@ -46,8 +49,6 @@ public class DFSSolver extends Solver {
                         }
                     } else {
                         CURRENT_RECURSION_DEPTH--;
-                        // Added: While backtracking, we unlock states, since they can be used in other iterations to reach solution.
-                        getClosedStateList().remove(childNode);
                     }
                 }
             }
