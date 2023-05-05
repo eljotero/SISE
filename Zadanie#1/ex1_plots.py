@@ -280,9 +280,11 @@ def main():
     plt.xlim((0.5, 7.5))
     plt.xticks(np.arange(1, 8, step=1.0), minor=False)
     plt.yscale("log")
+    plt.ylim((1, 10000000))
+    plt.yticks([1, 10, 100, 1000, 10000, 100000, 1000000, 10000000])
     plt.title("Ogółem")
     plt.ylabel("Liczba stanów odwiedzonych")
-    plt.legend(loc="upper left")
+    plt.legend(loc="upper left", ncol=3)
 
     ### Średnie artymetyczne wyznaczone dla strategii BFS względem głębokości rozwiązania z podziałem na poszczególne
     ### porządki przeszukiwania.
@@ -352,6 +354,8 @@ def main():
     plt.xlim((0.5, 7.5))
     plt.xticks(np.arange(1, 8, step=1.0), minor=False)
     plt.yscale("log")
+    plt.ylim((1, 1000))
+    plt.yticks([1, 10, 100, 1000])
     plt.title("BFS")
     plt.ylabel("Liczba stanów odwiedzonych")
     plt.xlabel("Głębokość")
@@ -425,6 +429,8 @@ def main():
     plt.xlim((0.5, 7.5))
     plt.xticks(np.arange(1, 8, step=1.0), minor=False)
     plt.yscale("log")
+    plt.ylim((1, 10000000))
+    plt.yticks([1, 10, 100, 1000, 10000, 100000, 1000000, 10000000])
     plt.title("DFS")
     plt.xlabel("Głębokość")
 
@@ -455,10 +461,10 @@ def main():
     plt.bar(xdata + 0.5 * width, y_manh_data, width=width, label="Manhattan")
 
     plt.xlim((0.5, 7.5))
-    plt.ylim((0.5, 31))
+    plt.ylim((0.5, 27))
     plt.xticks(np.arange(1, 8, step=1.0), minor=False)
-    plt.yticks(np.arange(0, 31, step=5.0), minor=False)
-    plt.yticks(np.arange(0, 31, step=1.0), minor=True)
+    plt.yticks(np.arange(0, 28, step=5.0), minor=False)
+    plt.yticks(np.arange(0, 28, step=1.0), minor=True)
     plt.title("A*")
     plt.legend(loc="upper left")
 
@@ -498,9 +504,11 @@ def main():
     plt.xlim((0.5, 7.5))
     plt.xticks(np.arange(1, 8, step=1.0), minor=False)
     plt.yscale("log")
+    plt.ylim((1, 10000000))
+    plt.yticks([1, 10, 100, 1000, 10000, 100000, 1000000, 10000000])
     plt.title("Ogółem")
     plt.ylabel("Liczba stanów przetworzonych")
-    plt.legend(loc="upper left")
+    plt.legend(loc="upper left", ncol=3)
 
     ### Średnie artymetyczne wyznaczone dla strategii BFS względem głębokości rozwiązania z podziałem na poszczególne
     ### porządki przeszukiwania.
@@ -570,6 +578,8 @@ def main():
     plt.xlim((0.5, 7.5))
     plt.xticks(np.arange(1, 8, step=1.0), minor=False)
     plt.yscale("log")
+    plt.ylim((1, 1000))
+    plt.yticks([1, 10, 100, 1000])
     plt.title("BFS")
     plt.ylabel("Liczba stanów przetworzonych")
     plt.xlabel("Głębokość")
@@ -643,6 +653,8 @@ def main():
     plt.xlim((0.5, 7.5))
     plt.xticks(np.arange(1, 8, step=1.0), minor=False)
     plt.yscale("log")
+    plt.ylim((1, 10000000))
+    plt.yticks([1, 10, 100, 1000, 10000, 100000, 1000000, 10000000])
     plt.title("DFS")
     plt.xlabel("Głębokość")
 
@@ -673,10 +685,10 @@ def main():
     plt.bar(xdata + 0.5 * width, y_manh_data, width=width, label="Manhattan")
 
     plt.xlim((0.5, 7.5))
-    plt.ylim((0.5, 13))
+    plt.ylim((0.5, 12.5))
     plt.xticks(np.arange(1, 8, step=1.0), minor=False)
-    plt.yticks(np.arange(0, 14, step=2.0), minor=False)
-    plt.yticks(np.arange(0, 14, step=1.0), minor=True)
+    plt.yticks(np.arange(0, 13, step=2.0), minor=False)
+    plt.yticks(np.arange(0, 13, step=0.5), minor=True)
     plt.title("A*")
     plt.legend(loc="upper left")
 
@@ -940,9 +952,11 @@ def main():
     plt.xlim((0.5, 7.5))
     plt.xticks(np.arange(1, 8, step=1.0), minor=False)
     plt.yscale("log")
+    plt.ylim((1, 2000))
+    plt.yticks([1, 10, 100, 1000, 2000])
     plt.title("Ogółem")
     plt.ylabel("Czas trwania procesu obliczeniowego")
-    plt.legend(loc="upper left")
+    plt.legend(loc="upper left", ncol=3)
 
     ### Średnie artymetyczne wyznaczone dla strategii BFS względem głębokości rozwiązania z podziałem na poszczególne
     ### porządki przeszukiwania.
@@ -1010,10 +1024,10 @@ def main():
     plt.bar(xdata + 2.5 * width, y_uldr_data, width=width, label="ULDR")
     plt.bar(xdata + 3.5 * width, y_ulrd_data, width=width, label="ULRD")
     plt.xlim((0.5, 7.5))
-    plt.ylim((0.5, 10.0))
+    plt.ylim((0.5, 6.5))
     plt.xticks(np.arange(1, 8, step=1.0), minor=False)
-    plt.yticks(np.arange(0, 10.1, step=2.0), minor=False)
-    plt.yticks(np.arange(0, 10.1, step=0.5), minor=True)
+    plt.yticks(np.arange(0, 6.5, step=1.00), minor=False)
+    plt.yticks(np.arange(0, 6.5, step=0.25), minor=True)
     plt.title("BFS")
     plt.ylabel("Czas trwania procesu obliczeniowego")
     plt.xlabel("Głębokość")
@@ -1087,6 +1101,8 @@ def main():
     plt.xlim((0.5, 7.5))
     plt.xticks(np.arange(1, 8, step=1.0), minor=False)
     plt.yscale("log")
+    plt.ylim((1, 2000))
+    plt.yticks([1, 10, 100, 1000, 2000])
     plt.title("DFS")
     plt.xlabel("Głębokość")
 
@@ -1117,10 +1133,10 @@ def main():
     plt.bar(xdata + 0.5 * width, y_manh_data, width=width, label="Manhattan")
 
     plt.xlim((0.5, 7.5))
-    plt.ylim((0.5, 4.5))
+    plt.ylim((0.5, 4))
     plt.xticks(np.arange(1, 8, step=1.0), minor=False)
-    plt.yticks(np.arange(0, 4.6, step=0.50), minor=False)
-    plt.yticks(np.arange(0, 4.6, step=0.25), minor=True)
+    plt.yticks(np.arange(0, 4.1, step=0.50), minor=False)
+    plt.yticks(np.arange(0, 4.1, step=0.25), minor=True)
     plt.title("A*")
     plt.legend(loc="upper left")
 

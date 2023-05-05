@@ -18,7 +18,7 @@
 # actual program, using the absolute (or relative) path, for example:
 #  $Progcmd = 'java -jar C:\Users\User\15puzzle\bin\puzzleval.jar'
 
-$Progcmd = 'C:\Users\DELL\Desktop\Studia\Sem4\Szutczna_inteligencja_i_systemy_ekspertowe\Laboratorium\Zadanie#1\SISE\JDK\bin\java.exe -jar C:\Users\DELL\Desktop\Studia\Sem4\Szutczna_inteligencja_i_systemy_ekspertowe\Laboratorium\Zadanie#1\SISE\Files\puzzleval.jar'
+$Progcmd = 'C:\Users\DELL\Desktop\Studia\Sem4\Szutczna_inteligencja_i_systemy_ekspertowe\Laboratorium\SISE\Zadanie#1\JDK\bin\java.exe -jar C:\Users\DELL\Desktop\Studia\Sem4\Szutczna_inteligencja_i_systemy_ekspertowe\Laboratorium\SISE\Zadanie#1\Files\puzzleval.jar'
 $SolFilenameRegex = '^[a-zA-Z0-9]+_[0-9]+_[0-9]+_[a-zA-Z]+_[a-zA-Z]+_sol.txt$'
 
 $NumCorrectSols = 0

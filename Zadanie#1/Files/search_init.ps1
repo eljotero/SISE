@@ -23,7 +23,7 @@
 
 param([string]$strategy, [string]$param)
 
-$Progcmd = 'java -jar C:\Users\DELL\Desktop\Studia\Sem4\Szutczna_inteligencja_i_systemy_ekspertowe\Laboratorium\Zadanie#1\SISE\Files\Zadanie_1.jar'
+$Progcmd = 'java -jar C:\Users\DELL\Desktop\Studia\Sem4\Szutczna_inteligencja_i_systemy_ekspertowe\Laboratorium\SISE\Zadanie#1\Files\Zadanie_1.jar'
 $Orders = @('RDUL', 'RDLU', 'DRUL', 'DRLU', 'LUDR',  'LURD', 'ULDR', 'ULRD')
 $Heuristics = @('hamm', 'manh')
 $InitFilenameRegex = '^[a-zA-Z0-9]+_[0-9]+_[0-9]+.txt$'
