@@ -1,4 +1,5 @@
 from collections import deque
+import time
 
 
 def bfs(node):
@@ -6,14 +7,18 @@ def bfs(node):
     Q = deque()  # Kolejka wszytkich stanów
     T = set()  # Zbiór stanów odwiedzonych
     s = node  # Węzeł
+    start = time.time()
+    i = 0
     Q.append(s)
 
     while Q:
+        i = i + 1
         v = Q.popleft()
         if v.hash() not in T:
             T.add(v.hash())
             if v.is_solved():
-                return v
+                end = time.time()
+                return len(v.solution), v.solution, end - start, len(T), i
             for i in range(0, len(order), 1):
                 v.change_state(order[i])
             for neighbour in v.neighbours:

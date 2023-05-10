@@ -15,7 +15,4 @@ if __name__ == '__main__':
     board_height = array_size[1]
     board_width = array_size[0]
     test_helper = helper.Helper(puzzle, board_height, board_width, 'LRUD')
-    print(test_helper.array)
-    test_helper_2 = bfs.bfs(test_helper)
-    print(test_helper_2.solution)
-    print(test_helper_2.array)
+    print(bfs.bfs(test_helper))
