@@ -19,7 +19,7 @@ def bfs(node):
             if v.is_solved():
                 end = time.time()
                 return len(v.solution), v.solution, end - start, len(T), i
-            for i in range(0, len(order), 1):
-                v.change_state(order[i])
+            for direction in order:
+                v.change_state(direction)
             for neighbour in v.neighbours:
                 Q.append(neighbour)

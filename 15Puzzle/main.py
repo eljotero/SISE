@@ -1,5 +1,6 @@
 import helper
 import bfs
+import dfs
 
 if __name__ == '__main__':
     with open('1.txt', 'r') as file:
@@ -15,4 +16,6 @@ if __name__ == '__main__':
     board_height = array_size[1]
     board_width = array_size[0]
     test_helper = helper.Helper(puzzle, board_height, board_width, 'LRUD')
-    print(bfs.bfs(test_helper))
+    print(test_helper.manhattan())
+    # print("BFS" + str(bfs.bfs(test_helper)))
+    # print("DFS" + str(dfs.dfs(test_helper)))

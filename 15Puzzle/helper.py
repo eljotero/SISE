@@ -10,6 +10,7 @@ class Helper:
         self.solution = ''
         self.parent = ''
         self.neighbours = []
+        self.depth = 1
 
     def is_solved(self):
         for i in range(0, len(self.array) - 1, 1):
@@ -73,3 +74,42 @@ class Helper:
                     new_node.solution += "L"
                     new_node.make_move(direction)
                     self.neighbours.append(new_node)
+
+    def hamming(self):
+        metric_value = 0
+        target_array = []
+        for i in range(0, len(self.array), 1):
+            target_array.append(i + 1)
+        for i in range(0, len(self.array), 1):
+            if target_array[i] != self.array[i] and self.array[i] != 0:
+                metric_value += 1
+        return metric_value
+
+    def manhattan(self):
+        two_dimensional_array = [[] for h in range(self.height)]
+        goal_array = [[] for h in range(self.height)]
+        k = 1
+        metric_value = 0
+        for i in range(0, self.width, 1):
+            for j in range(0, self.height, 1):
+                goal_array[i].append(k)
+                two_dimensional_array[i].append(self.array[i * self.width + j])
+                k += 1
+        for i in range(0, self.width, 1):
+            for j in range(0, self.height, 1):
+                if two_dimensional_array[i][j] != 0:
+                    temp = two_dimensional_array[i][j]
+                    goal_row = self.get_row_index(goal_array, temp)
+                    goal_column = self.get_column_index(goal_array, temp)
+                    metric_value = metric_value + abs(i - goal_row) + abs(j - goal_column)
+        return metric_value
+
+    def get_row_index(self, array, value):
+        for i, row in enumerate(array):
+            if value in row:
+                return i
+
+    def get_column_index(self, array, value):
+        for i, row in enumerate(array):
+            if value in row:
+                return row.index(value)
