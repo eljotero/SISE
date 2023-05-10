@@ -1,4 +1,4 @@
-import numpy as np
+import copy
 
 
 class Helper:
@@ -8,46 +8,68 @@ class Helper:
         self.array = array
         self.order = order
         self.solution = ''
+        self.parent = ''
+        self.neighbours = []
 
     def is_solved(self):
-        array_helper = np.array(self.array)
-        result = array_helper.flatten().astype(int)
-        for i in range(0, result.size - 1, 1):
-            if result[i] != i + 1:
+        for i in range(0, len(self.array) - 1, 1):
+            if self.array[i] != i + 1:
                 return False
         return True
 
     def find_zero(self):
-        for i in range(0, self.width, 1):
-            for j in range(0, self.height, 1):
-                if self.array[i][j] == 0:
-                    return i, j
+        for i in range(0, len(self.array), 1):
+            if self.array[i] == 0:
+                return i
 
     def make_move(self, direction):
-        array_index_x = self.find_zero()[0]
-        array_index_y = self.find_zero()[1]
+        zero_index = self.find_zero()
         match direction:
             case "D":
-                if array_index_x + 1 <= self.height:
-                    self.array[array_index_x][array_index_y], self.array[array_index_x + 1][array_index_y] = \
-                        self.array[array_index_x + 1][
-                            array_index_y], self.array[array_index_x][array_index_y]
+                if zero_index // self.width < self.height - 1:
+                    self.change_values(zero_index, zero_index + self.width)
             case "U":
-                if array_index_x - 1 >= 0:
-                    self.array[array_index_x][array_index_y], self.array[array_index_x - 1][array_index_y] = \
-                        self.array[array_index_x - 1][
-                            array_index_y], self.array[array_index_x][array_index_y]
+                if zero_index // self.width > 0:
+                    self.change_values(zero_index, zero_index - self.width)
             case "R":
-                if array_index_y + 1 <= self.width:
-                    self.array[array_index_x][array_index_y], self.array[array_index_x][array_index_y + 1] = \
-                        self.array[array_index_x][
-                            array_index_y + 1], self.array[array_index_x][array_index_y]
+                if zero_index % self.width < self.width - 1:
+                    self.change_values(zero_index, zero_index + 1)
             case "L":
-                if array_index_y - 1 >= 0:
-                    self.array[array_index_x][array_index_y], self.array[array_index_x][array_index_y - 1] = \
-                        self.array[array_index_x][
-                            array_index_y - 1], self.array[array_index_x][array_index_y]
+                if zero_index % self.width > 0:
+                    self.change_values(zero_index, zero_index - 1)
 
-    def deep_copy_of_object(self):
-        object_copy = self.deep_copy_of_object()
-        return object_copy
+    def hash(self):
+        return hash(tuple(self.array))
+
+    def change_values(self, index_of_zero, target_index):
+        temp = self.array[index_of_zero]
+        self.array[index_of_zero] = self.array[target_index]
+        self.array[target_index] = temp
+
+    def change_state(self, direction):
+        new_node = copy.deepcopy(self)
+        match direction:
+            case "D":
+                if self.find_zero() // self.width < self.height - 1 and self.parent != "U":
+                    new_node.parent = direction
+                    new_node.solution += "D"
+                    new_node.make_move(direction)
+                    self.neighbours.append(new_node)
+            case "U":
+                if self.find_zero() // self.width > 0 and self.parent != "D":
+                    new_node.parent = direction
+                    new_node.solution += "U"
+                    new_node.make_move(direction)
+                    self.neighbours.append(new_node)
+            case "R":
+                if self.find_zero() % self.width < self.width - 1 and self.parent != "L":
+                    new_node.parent = direction
+                    new_node.solution += "R"
+                    new_node.make_move(direction)
+                    self.neighbours.append(new_node)
+            case "L":
+                if self.find_zero() % self.width > 0 and self.parent != "R":
+                    new_node.parent = direction
+                    new_node.solution += "L"
+                    new_node.make_move(direction)
+                    self.neighbours.append(new_node)
