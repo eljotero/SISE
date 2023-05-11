@@ -1,7 +1,7 @@
 import copy
 
 
-class Helper:
+class node:
     def __init__(self, array, height, width, order):
         self.height = int(height)
         self.width = int(width)
@@ -11,6 +11,7 @@ class Helper:
         self.parent = ''
         self.neighbours = []
         self.depth = 1
+        self.heuristic = 0
 
     def is_solved(self):
         for i in range(0, len(self.array) - 1, 1):
@@ -86,22 +87,22 @@ class Helper:
         return metric_value
 
     def manhattan(self):
-        two_dimensional_array = [[] for h in range(self.height)]
-        goal_array = [[] for h in range(self.height)]
+        two_dimensional_array = [[0 for _ in range(self.width)] for _ in range(self.height)]
+        goal_array = [[0 for _ in range(self.width)] for _ in range(self.height)]
         k = 1
         metric_value = 0
-        for i in range(0, self.width, 1):
-            for j in range(0, self.height, 1):
-                goal_array[i].append(k)
-                two_dimensional_array[i].append(self.array[i * self.width + j])
+        for i in range(self.height):
+            for j in range(self.width):
+                goal_array[i][j] = k
+                two_dimensional_array[i][j] = self.array[i * self.width + j]
                 k += 1
-        for i in range(0, self.width, 1):
-            for j in range(0, self.height, 1):
+        for i in range(self.height):
+            for j in range(self.width):
                 if two_dimensional_array[i][j] != 0:
                     temp = two_dimensional_array[i][j]
                     goal_row = self.get_row_index(goal_array, temp)
                     goal_column = self.get_column_index(goal_array, temp)
-                    metric_value = metric_value + abs(i - goal_row) + abs(j - goal_column)
+                    metric_value += abs(i - goal_row) + abs(j - goal_column)
         return metric_value
 
     def get_row_index(self, array, value):
@@ -113,3 +114,6 @@ class Helper:
         for i, row in enumerate(array):
             if value in row:
                 return row.index(value)
+
+    def __lt__(self, other):
+        return self.heuristic < other.heuristic

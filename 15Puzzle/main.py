@@ -1,6 +1,7 @@
-import helper
+import node
 import bfs
 import dfs
+import AStar
 
 if __name__ == '__main__':
     with open('1.txt', 'r') as file:
@@ -15,7 +16,14 @@ if __name__ == '__main__':
                     puzzle.append(int(element))
     board_height = array_size[1]
     board_width = array_size[0]
-    test_helper = helper.Helper(puzzle, board_height, board_width, 'LRUD')
-    print(test_helper.manhattan())
-    # print("BFS" + str(bfs.bfs(test_helper)))
-    # print("DFS" + str(dfs.dfs(test_helper)))
+    test_helper1 = node.node(puzzle, board_height, board_width, 'LRUD')
+    print("A*hamm" + str(AStar.AStar(test_helper1, 'hamm')))
+
+    test_helper2 = node.node(puzzle, board_height, board_width, 'LRUD')
+    print("A*manh" + str(AStar.AStar(test_helper2, 'manh')))
+
+    test_helper3 = node.node(puzzle, board_height, board_width, 'LRUD')
+    print("BFS" + str(bfs.bfs(test_helper3)))
+
+    test_helper4 = node.node(puzzle, board_height, board_width, 'LRUD')
+    print("DFS" + str(dfs.dfs(test_helper4)))
