@@ -1,7 +1,7 @@
 import time
 
 
-def dfs(node):
+def dfs(node, file_name_1, file_name_2):
     order = node.order
     MaxDepth = 20
     S = []  # Stos
@@ -10,13 +10,20 @@ def dfs(node):
     it = 0
     start = time.time()
     while S:
-        it += 1
         v = S.pop()
         if v.hash() not in T and v.depth < MaxDepth:
+            it += 1
             v.depth += 1
             if v.is_solved():
                 end = time.time()
-                return len(v.solution), v.solution, end - start, len(T), it
+                with open(f"{file_name_1}", "w") as output_file:
+                    output_file.write("Rozwiazanie: " f"{v.solution}\n")
+                with open(f"{file_name_2}", "w") as output_file:
+                    output_file.write("Dlugosc rozwizania: "f"{len(v.solution)}\n")
+                    output_file.write("Czas rozwiazania: "f"{end - start}\n")
+                    output_file.write("Liczba stanow otwartych: "f"{len(T)}\n")
+                    output_file.write("Liczba stanow odwiedzonych: "f"{it}\n")
+                return
             T.add(v.hash())
             for direction in order:
                 v.change_state(direction)

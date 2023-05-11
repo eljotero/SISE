@@ -79,8 +79,9 @@ class node:
     def hamming(self):
         metric_value = 0
         target_array = []
-        for i in range(0, len(self.array), 1):
+        for i in range(0, len(self.array) - 1, 1):
             target_array.append(i + 1)
+        target_array.append(0)
         for i in range(0, len(self.array), 1):
             if target_array[i] != self.array[i] and self.array[i] != 0:
                 metric_value += 1
@@ -93,9 +94,10 @@ class node:
         metric_value = 0
         for i in range(self.height):
             for j in range(self.width):
-                goal_array[i][j] = k
+                if k<len(self.array):
+                    goal_array[i][j] = k
+                    k += 1
                 two_dimensional_array[i][j] = self.array[i * self.width + j]
-                k += 1
         for i in range(self.height):
             for j in range(self.width):
                 if two_dimensional_array[i][j] != 0:
