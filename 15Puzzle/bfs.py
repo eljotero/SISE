@@ -18,9 +18,9 @@ def bfs(node, file_name_1, file_name_2):
             T.add(v.hash())
             if v.is_solved():
                 end = time.time()
-                with open(f"{file_name_1}", "w") as output_file:
+                with open(f"results/{file_name_1}", "w") as output_file:
                     output_file.write("Rozwiazanie: " f"{v.solution}\n")
-                with open(f"{file_name_2}", "w") as output_file:
+                with open(f"results/{file_name_2}", "w") as output_file:
                     output_file.write("Dlugosc rozwizania: "f"{len(v.solution)}\n")
                     output_file.write("Czas rozwiazania: "f"{end - start}\n")
                     output_file.write("Liczba stanow otwartych: "f"{len(T)}\n")

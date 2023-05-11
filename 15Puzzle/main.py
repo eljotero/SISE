@@ -16,7 +16,7 @@ if __name__ == '__main__':
         file = sys.argv[3]
         result_file = sys.argv[4]
         stats_file = sys.argv[5]
-    with open(f"{file}", 'r') as file:
+    with open(f"puzzles/{file}", 'r') as file:
         array_size = []
         puzzle = []
         for line_number, line in enumerate(file):

@@ -1,4 +1,0 @@
-Dlugosc rozwizania: 1
-Czas rozwiazania: 0.0004987716674804688
-Liczba stanow otwartych: 1
-Liczba stanow odwiedzonych: 2
