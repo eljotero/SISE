@@ -461,10 +461,10 @@ def main():
     plt.bar(xdata + 0.5 * width, y_manh_data, width=width, label="Manhattan")
 
     plt.xlim((0.5, 7.5))
-    plt.ylim((0.5, 27))
+    plt.ylim((0.5, 25))
     plt.xticks(np.arange(1, 8, step=1.0), minor=False)
-    plt.yticks(np.arange(0, 28, step=5.0), minor=False)
-    plt.yticks(np.arange(0, 28, step=1.0), minor=True)
+    plt.yticks(np.arange(0, 25.1, step=5.0), minor=False)
+    plt.yticks(np.arange(0, 25.1, step=1.0), minor=True)
     plt.title("A*")
     plt.legend(loc="upper left")
 
@@ -685,10 +685,10 @@ def main():
     plt.bar(xdata + 0.5 * width, y_manh_data, width=width, label="Manhattan")
 
     plt.xlim((0.5, 7.5))
-    plt.ylim((0.5, 12.5))
+    plt.ylim((0.5, 11.0))
     plt.xticks(np.arange(1, 8, step=1.0), minor=False)
-    plt.yticks(np.arange(0, 13, step=2.0), minor=False)
-    plt.yticks(np.arange(0, 13, step=0.5), minor=True)
+    plt.yticks(np.arange(0, 11.5, step=2.0), minor=False)
+    plt.yticks(np.arange(0, 11.5, step=0.5), minor=True)
     plt.title("A*")
     plt.legend(loc="upper left")
 
@@ -955,7 +955,7 @@ def main():
     plt.ylim((1, 2000))
     plt.yticks([1, 10, 100, 1000, 2000])
     plt.title("Ogółem")
-    plt.ylabel("Czas trwania procesu obliczeniowego")
+    plt.ylabel("Czas trwania procesu obliczeniowego [ms]")
     plt.legend(loc="upper left", ncol=3)
 
     ### Średnie artymetyczne wyznaczone dla strategii BFS względem głębokości rozwiązania z podziałem na poszczególne
@@ -1029,7 +1029,7 @@ def main():
     plt.yticks(np.arange(0, 6.5, step=1.00), minor=False)
     plt.yticks(np.arange(0, 6.5, step=0.25), minor=True)
     plt.title("BFS")
-    plt.ylabel("Czas trwania procesu obliczeniowego")
+    plt.ylabel("Czas trwania procesu obliczeniowego [ms]")
     plt.xlabel("Głębokość")
     plt.legend(loc="upper left", ncol=2)
 
@@ -1135,8 +1135,8 @@ def main():
     plt.xlim((0.5, 7.5))
     plt.ylim((0.5, 4))
     plt.xticks(np.arange(1, 8, step=1.0), minor=False)
-    plt.yticks(np.arange(0, 4.1, step=0.50), minor=False)
-    plt.yticks(np.arange(0, 4.1, step=0.25), minor=True)
+    plt.yticks(np.arange(0, 5.1, step=0.50), minor=False)
+    plt.yticks(np.arange(0, 5.1, step=0.25), minor=True)
     plt.title("A*")
     plt.legend(loc="upper left")
 

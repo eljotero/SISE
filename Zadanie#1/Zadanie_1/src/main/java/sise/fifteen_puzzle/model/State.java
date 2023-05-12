@@ -132,7 +132,7 @@ public class State implements Comparable<State> {
         int heuristicFunctionValue = 0;
         if (heuristic.equals("hamm")) {
             for (int i = 0; i < arrayOfBlocks.length; i++) {
-                if (arrayOfBlocks[i] != ((i + 1) % arrayOfBlocks.length)) {
+                if (arrayOfBlocks[i] != 0 && arrayOfBlocks[i] != ((i + 1) % arrayOfBlocks.length)) {
                     heuristicFunctionValue++;
                 }
             }
@@ -141,12 +141,14 @@ public class State implements Comparable<State> {
                 int currentRow = i / this.getNumberOfColumns();
                 int currentColumn = i % this.getNumberOfRows();
                 int currentValue = arrayOfBlocks[i] - 1;
-                if (currentValue < 0) {
-                    currentValue += arrayOfBlocks.length;
+                if (arrayOfBlocks[i] != 0) {
+                    if (currentValue < 0) {
+                        currentValue += arrayOfBlocks.length;
+                    }
+                    int requiredRow = currentValue / this.getNumberOfColumns();
+                    int requiredColumn = currentValue % this.getNumberOfRows();
+                    heuristicFunctionValue += (Math.abs(requiredRow - currentRow) + Math.abs(requiredColumn - currentColumn));
                 }
-                int requiredRow = currentValue / this.getNumberOfColumns();
-                int requiredColumn = currentValue % this.getNumberOfRows();
-                heuristicFunctionValue += (Math.abs(requiredRow - currentRow) + Math.abs(requiredColumn - currentColumn));
             }
         } else {
             System.out.println("Unknown heuristic!");
