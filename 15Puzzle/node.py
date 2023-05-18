@@ -40,7 +40,7 @@ class node:
                 if zero_index % self.width > 0:
                     self.change_values(zero_index, zero_index - 1)
 
-    def hash(self):
+    def __hash__(self):
         return hash(tuple(self.array))
 
     def change_values(self, index_of_zero, target_index):
@@ -94,7 +94,7 @@ class node:
         metric_value = 0
         for i in range(self.height):
             for j in range(self.width):
-                if k<len(self.array):
+                if k < len(self.array):
                     goal_array[i][j] = k
                     k += 1
                 two_dimensional_array[i][j] = self.array[i * self.width + j]

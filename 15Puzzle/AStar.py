@@ -8,10 +8,11 @@ def AStar(node, metric, file_name_1, file_name_2):
     T = set()
     i = 0
     start = time.time()
-    p.put(node, 0)
+    p.put((0, node))
     while p:
-        v = p.get()
-        if v.hash() not in T:
+        v = p.get()[1]
+        print(v.array)
+        if v.__hash__() not in T:
             i += 1
             if v.is_solved():
                 end = time.time()
@@ -33,4 +34,4 @@ def AStar(node, metric, file_name_1, file_name_2):
                     if metric == 'manh':
                         neighbour.heuristic = node.manhattan()
                     priority = neighbour.depth + neighbour.heuristic
-                    p.put(neighbour, priority)
+                    p.put((priority, neighbour))

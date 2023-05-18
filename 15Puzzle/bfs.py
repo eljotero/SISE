@@ -13,9 +13,9 @@ def bfs(node, file_name_1, file_name_2):
 
     while Q:
         v = Q.popleft()
-        if v.hash() not in T:
+        if v.__hash__() not in T:
             i = i + 1
-            T.add(v.hash())
+            T.add(v.__hash__())
             if v.is_solved():
                 end = time.time()
                 with open(f"results/{file_name_1}", "w") as output_file:

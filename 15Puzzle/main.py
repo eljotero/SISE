@@ -5,17 +5,17 @@ import AStar
 import sys
 
 if __name__ == '__main__':
-    algorithm_type = sys.argv[1]
+    algorithm_type = sys.argv[2]
     if algorithm_type == 'astr':
-        metric = sys.argv[2]
-        file = sys.argv[3]
-        result_file = sys.argv[4]
-        stats_file = sys.argv[5]
+        metric = sys.argv[3]
+        file = sys.argv[4]
+        result_file = sys.argv[5]
+        stats_file = sys.argv[6]
     else:
-        order = sys.argv[2]
-        file = sys.argv[3]
-        result_file = sys.argv[4]
-        stats_file = sys.argv[5]
+        order = sys.argv[3]
+        file = sys.argv[4]
+        result_file = sys.argv[5]
+        stats_file = sys.argv[6]
     with open(f"puzzles/{file}", 'r') as file:
         array_size = []
         puzzle = []
