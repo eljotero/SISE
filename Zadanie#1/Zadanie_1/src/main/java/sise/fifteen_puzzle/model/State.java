@@ -115,10 +115,10 @@ public class State implements Comparable<State> {
 
         byte[] blocksArray = copyArrayOfBlocks();
         int zeroPos = getZeroPosition();
-        int columnNumber = ((zeroPos % this.getNumberOfRows()) + colModifier);
+        int columnNumber = ((zeroPos % this.getNumberOfColumns()) + colModifier);
         int rowNumber = ((zeroPos / this.getNumberOfColumns()) + rowModifier);
         if (rowNumber >= 0 && rowNumber < this.getNumberOfRows() && columnNumber >= 0 && columnNumber < this.getNumberOfColumns()) {
-            int neighbourPosition = (int) (rowNumber * Math.sqrt(this.arrayOfBlocks.length) + columnNumber);
+            int neighbourPosition = (rowNumber * this.getNumberOfColumns() + columnNumber);
             byte temp = blocksArray[neighbourPosition];
             blocksArray[neighbourPosition] = blocksArray[zeroPos];
             blocksArray[zeroPos] = temp;
@@ -200,7 +200,7 @@ public class State implements Comparable<State> {
 
         State state = (State) o;
 
-        return new EqualsBuilder().append(zeroPosition, state.zeroPosition).append(this.getNumberOfRows(), state.getNumberOfColumns()).append(numberOfColumns, state.numberOfColumns).append(arrayOfBlocks, state.arrayOfBlocks).isEquals();
+        return new EqualsBuilder().append(zeroPosition, state.zeroPosition).append(this.getNumberOfRows(), state.getNumberOfRows()).append(this.numberOfColumns, state.numberOfColumns).append(arrayOfBlocks, state.arrayOfBlocks).isEquals();
     }
 
     @Override

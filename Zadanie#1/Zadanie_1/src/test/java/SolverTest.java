@@ -15,12 +15,15 @@ public class SolverTest {
     private static Solver BFS;
     private static Solver DFS;
     private static Solver aStr;
+    private static Solver aStr4x3;
+    private static State readState4x3;
     private static State readState4x4;
     private static State readState3x3;
     private static State readState2x2;
     private static State targetState4x4;
     private static State targetState3x3;
     private static State targetState2x2;
+    private static State targetState4x3;
 
     @BeforeAll
     public static void init() throws IOManagerReadException {
@@ -38,9 +41,16 @@ public class SolverTest {
         targetState3x3 = readState3x3.generateTargetState();
         targetState2x2 = readState2x2.generateTargetState();
 
+        fileName = "4x3_01_00001.txt";
+        readBytes = IOManager.readBytesFromFile(fileName);
+        readState4x3 = ParseIO.parseInputFile(readBytes);
+        targetState4x3 = readState4x3.generateTargetState();
+
         BFS = new BFSSolver(targetState4x4, "LURD");
         DFS = new DFSSolver(targetState4x4, "ULRD");
         aStr = new AStarSolver(targetState4x4, "hamm");
+
+        aStr4x3 = new AStarSolver(targetState4x3, "manh");
     }
 
     @Test
@@ -61,6 +71,13 @@ public class SolverTest {
     public void aStrFindSolution() {
         Node startingNode = new Node(readState4x4, null, ' ');
         String solution = aStr.solve(startingNode);
+        System.out.println("Solution: " + solution);
+    }
+
+    @Test
+    public void testFor4x3Board() {
+        Node startingNode = new Node(readState4x3, null, ' ');
+        String solution = aStr4x3.solve(startingNode);
         System.out.println("Solution: " + solution);
     }
 }
